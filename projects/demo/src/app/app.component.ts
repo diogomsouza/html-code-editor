@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HtmlCodeEditorComponent } from '@stagyra/html-code-editor';
 
@@ -9,14 +9,20 @@ import { HtmlCodeEditorComponent } from '@stagyra/html-code-editor';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
+  @ViewChild(HtmlCodeEditorComponent) private editor?: HtmlCodeEditorComponent;
+
   readonly content = new FormControl<string>(this.sampleHtml, { nonNullable: true });
 
   showSourceButton = true;
   sourceLineWrap = true;
 
-  get htmlValue(): string {
-    return this.content.value;
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      if (this.editor && !this.editor.showSource) {
+        this.editor.toggleSource();
+      }
+    });
   }
 
   loadSample(): void {
@@ -33,8 +39,8 @@ export class AppComponent {
       '<p><strong>Html Code Editor</strong> keeps visual editing and source editing in one Angular form control.</p>',
       '<ul>',
       '  <li>Use toolbar actions to format text, links, spacing, borders and images.</li>',
-      '  <li>Toggle source mode to inspect the generated HTML.</li>',
-      '  <li>The value below updates through Reactive Forms.</li>',
+      '  <li>Review the generated markup in the source panel while editing.</li>',
+      '  <li>Bind it with Reactive Forms and keep the package UI self-contained.</li>',
       '</ul>',
     ].join('\n');
   }

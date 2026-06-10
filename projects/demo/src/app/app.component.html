@@ -1,39 +1,102 @@
-<main class="demo-shell">
-  <section class="demo-toolbar" aria-label="Editor controls">
-    <div>
+<header class="app-header">
+  <nav class="topbar" aria-label="Demo navigation">
+    <a class="brand" href="https://www.npmjs.com/package/@stagyra/html-code-editor" target="_blank" rel="noreferrer">
+      <span class="brand-mark" aria-hidden="true">H</span>
+      <span>Html Code Editor</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#playground">Playground</a>
+      <a href="https://www.npmjs.com/package/@stagyra/html-code-editor" target="_blank" rel="noreferrer">NPM</a>
+      <a href="https://github.com/diogomsouza/html-code-editor" target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
       <p class="eyebrow">&#64;stagyra/html-code-editor</p>
-      <h1>HTML Code Editor Demo</h1>
+      <h1 id="hero-title">Angular HTML editor with visual and source modes.</h1>
+      <p class="hero-text">
+        A focused rich-text component for Angular forms, with formatting tools, image and link actions,
+        and an integrated source editor that opens directly in this demo.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="#playground">Try the editor</a>
+        <a class="button secondary" href="https://www.npmjs.com/package/@stagyra/html-code-editor" target="_blank" rel="noreferrer">
+          View package
+        </a>
+      </div>
     </div>
 
-    <div class="control-strip">
-      <label>
-        <input type="checkbox" [checked]="showSourceButton" (change)="showSourceButton = !showSourceButton" />
-        Source button
-      </label>
-      <label>
-        <input type="checkbox" [checked]="sourceLineWrap" (change)="sourceLineWrap = !sourceLineWrap" />
-        Source wrap
-      </label>
-      <button type="button" (click)="loadSample()">Load</button>
-      <button type="button" class="secondary" (click)="clear()">Clear</button>
+    <div class="hero-panel" aria-hidden="true">
+      <div class="panel-toolbar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="panel-preview">
+        <div class="preview-document">
+          <span class="preview-kicker"></span>
+          <span class="preview-title"></span>
+          <span class="preview-line wide"></span>
+          <span class="preview-line"></span>
+          <div class="preview-list">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+        <div class="preview-source">
+          <span class="code-line teal"></span>
+          <span class="code-line blue"></span>
+          <span class="code-line purple"></span>
+          <span class="code-line orange"></span>
+          <span class="code-line short"></span>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="workspace">
-    <div class="editor-pane">
-      <stagyra-html-code-editor
-        [formControl]="content"
-        [showSourceButton]="showSourceButton"
-        [sourceLineWrap]="sourceLineWrap"
-      ></stagyra-html-code-editor>
-    </div>
-
-    <aside class="output-pane" aria-label="Current HTML value">
-      <div class="output-header">
-        <h2>HTML value</h2>
-        <span>{{ htmlValue.length }} chars</span>
+  <section id="playground" class="playground-section" aria-labelledby="playground-title">
+    <div class="section-inner">
+      <div class="section-heading">
+        <p class="eyebrow">Live playground</p>
+        <h2 id="playground-title">Edit rich text and inspect the HTML in one place.</h2>
       </div>
-      <pre>{{ htmlValue }}</pre>
-    </aside>
+
+      <div class="playground-card">
+        <div class="controls-panel" aria-label="Editor controls">
+          <div>
+            <h3>Demo controls</h3>
+            <p>Source view starts open so the generated markup stays visible while you test the component.</p>
+          </div>
+
+          <label>
+            <input type="checkbox" [checked]="showSourceButton" (change)="showSourceButton = !showSourceButton" />
+            Source button
+          </label>
+
+          <label>
+            <input type="checkbox" [checked]="sourceLineWrap" (change)="sourceLineWrap = !sourceLineWrap" />
+            Source wrap
+          </label>
+
+          <div class="control-actions">
+            <button type="button" (click)="loadSample()">Load sample</button>
+            <button type="button" class="secondary" (click)="clear()">Clear</button>
+          </div>
+        </div>
+
+        <div class="editor-stage">
+          <stagyra-html-code-editor
+            [formControl]="content"
+            [showSourceButton]="showSourceButton"
+            [sourceLineWrap]="sourceLineWrap"
+          ></stagyra-html-code-editor>
+        </div>
+      </div>
+    </div>
   </section>
 </main>
