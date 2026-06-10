@@ -1,0 +1,33 @@
+{
+  "name": "@stagyra/html-code-editor",
+  "version": "0.1.0",
+  "license": "MIT",
+  "description": "A reusable Angular 18+ HTML code editor component.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/diogomsouza/html-code-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/diogomsouza/html-code-editor/issues"
+  },
+  "homepage": "https://github.com/diogomsouza/html-code-editor#readme",
+  "keywords": [
+    "angular",
+    "html",
+    "editor",
+    "rich-text",
+    "code-editor"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">=18.0.0",
+    "@angular/core": ">=18.0.0",
+    "@angular/forms": ">=18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}
