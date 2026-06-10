@@ -1,0 +1,39 @@
+<main class="demo-shell">
+  <section class="demo-toolbar" aria-label="Editor controls">
+    <div>
+      <p class="eyebrow">&#64;stagyra/html-code-editor</p>
+      <h1>HTML Code Editor Demo</h1>
+    </div>
+
+    <div class="control-strip">
+      <label>
+        <input type="checkbox" [checked]="showSourceButton" (change)="showSourceButton = !showSourceButton" />
+        Source button
+      </label>
+      <label>
+        <input type="checkbox" [checked]="sourceLineWrap" (change)="sourceLineWrap = !sourceLineWrap" />
+        Source wrap
+      </label>
+      <button type="button" (click)="loadSample()">Load</button>
+      <button type="button" class="secondary" (click)="clear()">Clear</button>
+    </div>
+  </section>
+
+  <section class="workspace">
+    <div class="editor-pane">
+      <stagyra-html-code-editor
+        [formControl]="content"
+        [showSourceButton]="showSourceButton"
+        [sourceLineWrap]="sourceLineWrap"
+      ></stagyra-html-code-editor>
+    </div>
+
+    <aside class="output-pane" aria-label="Current HTML value">
+      <div class="output-header">
+        <h2>HTML value</h2>
+        <span>{{ htmlValue.length }} chars</span>
+      </div>
+      <pre>{{ htmlValue }}</pre>
+    </aside>
+  </section>
+</main>
