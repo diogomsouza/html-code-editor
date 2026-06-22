@@ -1025,7 +1025,16 @@ export class HtmlCodeEditorComponent implements AfterViewInit, OnDestroy, Contro
 
     const doc = this.getPreviewDocument();
     this.savePreviewSelection();
-    this.linkUrl = this.getSelectedLink(doc)?.getAttribute('href') || '';
+
+    const selectedLink = this.getSelectedLink(doc);
+    if (selectedLink) {
+      this.linkUrl = selectedLink.getAttribute('href') || '';
+    } else {
+      const selection = doc?.getSelection();
+      const range = selection && selection.rangeCount > 0 ? selection.getRangeAt(0) : this.savedPreviewRange;
+      this.linkUrl = range && !range.collapsed ? range.toString().trim() : '';
+    }
+
     this.togglePopover('link');
   }
 
